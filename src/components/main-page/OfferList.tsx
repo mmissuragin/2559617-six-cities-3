@@ -10,21 +10,21 @@ export function OfferList(): JSX.Element {
 
   const filteredOffers = offers.filter((offer) => offer.city.name === city);
 
-const sortedOffers =
+  const sortedOffers =
   sortType === 'popular'
     ? filteredOffers
     : [...filteredOffers].sort((a, b) => {
-        switch (sortType) {
-          case 'price-low-to-high':
-            return a.price - b.price;
-          case 'price-high-to-low':
-            return b.price - a.price;
-          case 'top-rated-first':
-            return (b.rating ?? 0) - (a.rating ?? 0);
-          default:
-            return 0;
-        }
-      });
+      switch (sortType) {
+        case 'price-low-to-high':
+          return a.price - b.price;
+        case 'price-high-to-low':
+          return b.price - a.price;
+        case 'top-rated-first':
+          return (b.rating ?? 0) - (a.rating ?? 0);
+        default:
+          return 0;
+      }
+    });
 
 
   return (

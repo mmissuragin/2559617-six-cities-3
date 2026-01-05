@@ -14,7 +14,6 @@ interface Props {
 
 export function OfferInfo({ offer }: Props): JSX.Element {
 
-  console.log('HOST FROM SERVER:', offer.host);
   return (
     <div className='offer__container container'>
       <div className='offer__wrapper'>

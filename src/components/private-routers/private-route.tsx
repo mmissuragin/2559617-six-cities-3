@@ -13,7 +13,7 @@ export function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
   );
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
-    return <></>;
+    return null;
   }
 
   return (

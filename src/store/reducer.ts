@@ -62,8 +62,8 @@ export const reducer = createReducer(initialState, (builder) => {
       state.authorizationStatus = action.payload;
     })
     .addCase(fetchOfferById.pending, (state) => {
-    state.isCurrentOfferLoading = true;
-    state.currentOffer = null;
+      state.isCurrentOfferLoading = true;
+      state.currentOffer = null;
     })
     .addCase(fetchOfferById.fulfilled, (state, action) => {
       state.currentOffer = action.payload;
@@ -86,8 +86,8 @@ export const reducer = createReducer(initialState, (builder) => {
       state.currentNearbyOffers = [];
     })
     .addCase(fetchCommentsByOfferId.pending, (state) => {
-    state.isCommentsLoading = true;
-    state.currentComments = [];
+      state.isCommentsLoading = true;
+      state.currentComments = [];
     })
     .addCase(fetchCommentsByOfferId.fulfilled, (state, action) => {
       state.currentComments = action.payload;

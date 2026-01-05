@@ -5,7 +5,7 @@ import { fetchOffers } from '../../store/api-actions';
 import { CitiesTabsList } from '../../components/cities-tabs/cities-tabs-list';
 import { CitiesContainer } from '../../components/main-page/cities-container';
 import { PageLayout } from '../../components/page-layout/PageLayout';
-import { Spinner } from '../../components/spinner/Spinner';
+import { Spinner } from '../../components/Spinner/Spinner';
 
 export function MainPage(): JSX.Element {
   const dispatch: AppDispatch = useDispatch();

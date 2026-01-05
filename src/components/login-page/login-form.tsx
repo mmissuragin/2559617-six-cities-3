@@ -9,15 +9,15 @@ export function LoginForm(): JSX.Element {
   const [password, setPassword] = useState('');
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
-  evt.preventDefault();
+    evt.preventDefault();
 
-  if (!email.trim() || !password.trim()) {
-    alert('Both email and password are required.');
-    return;
-  }
+    if (!email.trim() || !password.trim()) {
+      alert('Both email and password are required.');
+      return;
+    }
 
-  dispatch(login({ email, password }));
-};
+    dispatch(login({ email, password }));
+  };
 
   return (
     <section className="login">

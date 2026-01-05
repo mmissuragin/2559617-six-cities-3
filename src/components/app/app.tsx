@@ -18,8 +18,8 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     dispatch(checkAuth());
-  }, [dispatch])
-  
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Routes>
