@@ -6,7 +6,7 @@ import { PageLayout } from '../../components/page-layout/PageLayout';
 
 export function FavoritesPage(): JSX.Element {
   const offers = useSelector((state: RootState) => state.offers);
-  const favoriteOffers = offers.filter((offer) => offer.isFavourite);
+  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
 
   return (
     <PageLayout

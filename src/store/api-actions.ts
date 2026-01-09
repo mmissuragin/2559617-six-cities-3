@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
+import { AxiosInstance, AxiosError } from 'axios';
 import { TOffer, TNearbyOffer, TComment} from '../types/offers';
 import { RootState } from './store';
 import { setAuthorizationStatus } from './action';
@@ -37,8 +37,8 @@ export const checkAuth = createAsyncThunk<
     try {
       await api.get('/login');
       dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
-    } catch (error: any) {
-      if (error.response?.status === 401) {
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.status === 401) {
         dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
       }
     }

@@ -12,7 +12,6 @@ export function LoginForm(): JSX.Element {
     evt.preventDefault();
 
     if (!email.trim() || !password.trim()) {
-      alert('Both email and password are required.');
       return;
     }
 

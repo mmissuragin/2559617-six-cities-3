@@ -33,7 +33,7 @@ function useMap(mapRef: RefObject<HTMLElement>, mapCenter: MapCenter): LeafletMa
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef.current, mapCenter.latitude, mapCenter.longitude, mapCenter.zoom]);
+  }, [mapRef, mapCenter.latitude, mapCenter.longitude, mapCenter.zoom]);
 
   return map;
 }
