@@ -1,12 +1,17 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { CitiesTabsItem } from './cities-tabs-item';
 import { CITIES } from '../../const';
+import { RootState, AppDispatch } from '../../store/store';
+import { changeCity } from '../../store/action';
 
-type Props = {
-  selectedCity: string;
-  onCityChange: (city: string) => void;
-};
+export function CitiesTabsList(): JSX.Element {
+  const dispatch: AppDispatch = useDispatch();
+  const selectedCity = useSelector((state: RootState) => state.city);
 
-export function CitiesTabsList({ selectedCity, onCityChange }: Props) {
+  const handleCityChange = (city: string) => {
+    dispatch(changeCity(city));
+  };
+
   return (
     <div className="tabs">
       <section className="locations container">
@@ -16,7 +21,7 @@ export function CitiesTabsList({ selectedCity, onCityChange }: Props) {
               key={city.id}
               cityName={city.name}
               isActive={selectedCity === city.name}
-              onCityChange={onCityChange}
+              onCityChange={handleCityChange}
             />
           ))}
         </ul>

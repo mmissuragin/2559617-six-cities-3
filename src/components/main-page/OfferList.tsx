@@ -6,8 +6,26 @@ import { RootState } from '../../store/store';
 export function OfferList(): JSX.Element {
   const city = useSelector((state: RootState) => state.city);
   const offers = useSelector((state: RootState) => state.offers);
+  const sortType = useSelector((state: RootState) => state.sortType);
 
   const filteredOffers = offers.filter((offer) => offer.city.name === city);
+
+  const sortedOffers =
+  sortType === 'popular'
+    ? filteredOffers
+    : [...filteredOffers].sort((a, b) => {
+      switch (sortType) {
+        case 'price-low-to-high':
+          return a.price - b.price;
+        case 'price-high-to-low':
+          return b.price - a.price;
+        case 'top-rated-first':
+          return (b.rating ?? 0) - (a.rating ?? 0);
+        default:
+          return 0;
+      }
+    });
+
 
   return (
     <section className='cities__places places'>
@@ -19,11 +37,8 @@ export function OfferList(): JSX.Element {
       <PlacesSorting />
 
       <div className='cities__places-list places__list tabs__content'>
-        {filteredOffers.map((offer) => (
-          <PlaceCard
-            key={offer.id}
-            offer={offer}
-          />
+        {sortedOffers.map((offer) => (
+          <PlaceCard key={offer.id} offer={offer} />
         ))}
       </div>
     </section>

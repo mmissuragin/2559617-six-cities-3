@@ -13,12 +13,7 @@ export function Header({ showNavigation = true }: Props): JSX.Element {
           <div className='header__left'>
             <HeaderLogo />
           </div>
-          {showNavigation && (
-            <HeaderNavigation
-              userEmail='Oliver.conner@gmail.com'
-              userFavouriteCount={3}
-            />
-          )}
+          {showNavigation && <HeaderNavigation />}
         </div>
       </div>
     </header>

@@ -33,7 +33,12 @@ export function OfferReviewsItem({ userPhoto, userName, userRating, userText, da
         <p className='reviews__text'>
           {userText}
         </p>
-        <time className='reviews__time' dateTime={date}>April 2019</time>
+        <time className='reviews__time' dateTime={date}>
+          {new Date(date).toLocaleDateString('en-US', {
+            month: 'long',
+            year: 'numeric',
+          })}
+        </time>
       </div>
     </li>
   );

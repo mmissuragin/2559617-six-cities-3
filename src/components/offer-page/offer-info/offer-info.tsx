@@ -13,6 +13,7 @@ interface Props {
 }
 
 export function OfferInfo({ offer }: Props): JSX.Element {
+
   return (
     <div className='offer__container container'>
       <div className='offer__wrapper'>
@@ -22,7 +23,7 @@ export function OfferInfo({ offer }: Props): JSX.Element {
         <OfferFeatures offer={offer} />
         <OfferPrice offer={offer} />
         <OfferInsideList offer={offer} />
-        <OfferHost />
+        <OfferHost host={offer.host} description={offer.description} />
         <OfferReviews />
       </div>
     </div>

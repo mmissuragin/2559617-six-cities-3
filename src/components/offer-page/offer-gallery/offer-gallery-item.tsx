@@ -1,11 +1,15 @@
 interface Props {
-  scrPhoto: string;
+  srcPhoto: string;
 }
 
-export function OfferGalleryItem({ scrPhoto }: Props) {
+export function OfferGalleryItem({ srcPhoto }: Props): JSX.Element {
   return (
-    <div className='offer__image-wrapper'>
-      <img className='offer__image' src={scrPhoto} alt='Photo studio' />
+    <div className="offer__image-wrapper">
+      <img
+        className="offer__image"
+        src={srcPhoto}
+        alt="Photo studio"
+      />
     </div>
   );
 }

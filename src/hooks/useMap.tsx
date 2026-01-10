@@ -13,8 +13,9 @@ function useMap(mapRef: RefObject<HTMLElement>, mapCenter: MapCenter): LeafletMa
   const isRenderedRef = useRef(false);
 
   useEffect(() => {
-    if (mapRef.current && !isRenderedRef.current) {
-      const instance = leaflet.map(mapRef.current, {
+    const container = mapRef.current;
+    if (container && !isRenderedRef.current) {
+      const instance = leaflet.map(container, {
         center: [mapCenter.latitude, mapCenter.longitude],
         zoom: mapCenter.zoom,
       });
@@ -32,7 +33,7 @@ function useMap(mapRef: RefObject<HTMLElement>, mapCenter: MapCenter): LeafletMa
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapCenter.latitude, mapCenter.longitude, mapCenter.zoom, mapRef]);
+  }, [mapRef, mapCenter.latitude, mapCenter.longitude, mapCenter.zoom]);
 
   return map;
 }

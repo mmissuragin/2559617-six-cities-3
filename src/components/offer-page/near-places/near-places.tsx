@@ -1,14 +1,43 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '../../../store/store';
+import { fetchNearbyOffers } from '../../../store/api-actions';
 import { NearPlacesCard } from './near-place-card';
+import { useParams } from 'react-router-dom';
 
 export function NearPlaces() {
+  const { id } = useParams<{ id: string }>();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { currentNearbyOffers } = useSelector(
+    (state: RootState) => state
+  );
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchNearbyOffers(id));
+    }
+  }, [id, dispatch]);
+
+  const nearbyOffers = currentNearbyOffers.slice(0, 3);
+
   return (
     <div className='container'>
       <section className='near-places places'>
         <h2 className='near-places__title'>Other places in the neighbourhood</h2>
         <div className='near-places__list places__list'>
-          <NearPlacesCard isPremium={false} imageSrc='img/room.jpg' pricePerNight={80} rating={80} title='Wood and stone place' type='Room' />
-          <NearPlacesCard isPremium={false} imageSrc='img/apartment-02.jpg' pricePerNight={132} rating={80} title='Canal View Prinsengracht' type='Apartment' />
-          <NearPlacesCard isPremium imageSrc='img/apartment-03.jpg' pricePerNight={180} rating={100} title='Nice, cozy, warm big bed apartment' type='Apartment' />
+          {nearbyOffers.map((offer) => (
+            <NearPlacesCard
+              key={offer.id}
+              id={offer.id}
+              isPremium={offer.isPremium}
+              imageSrc={offer.previewImage}
+              pricePerNight={offer.price}
+              rating={(offer.rating / 5) * 100}
+              title={offer.title}
+              type={offer.type.charAt(0).toUpperCase() + offer.type.slice(1)}
+            />
+          ))}
         </div>
       </section>
     </div>

@@ -1,15 +1,23 @@
+import { TComment } from '../../../../../types/offers';
 import { OfferReviewsItem } from './offer-reviews-item';
 
-export function OfferReviewsList() {
+interface Props {
+  comments: TComment[];
+}
+
+export function OfferReviewsList({ comments }: Props) {
   return (
     <ul className='reviews__list'>
-      <OfferReviewsItem
-        userPhoto='img/avatar-max.jpg'
-        userName='Max'
-        userRating={80}
-        date='April 2019'
-        userText='A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th cen'
-      />
+      {comments.map((comment) => (
+        <OfferReviewsItem
+          key={comment.id}
+          userPhoto={comment.user.avatarUrl}
+          userName={comment.user.name}
+          userRating={comment.rating * 20}
+          userText={comment.comment}
+          date={comment.date}
+        />
+      ))}
     </ul>
   );
 }
