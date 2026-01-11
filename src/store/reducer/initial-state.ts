@@ -1,4 +1,5 @@
 import { TOffer, TNearbyOffer, TComment } from '../../types/offers';
+import { User } from '../../types/user';
 import { CITIES, AuthorizationStatus } from '../../const';
 
 export interface OffersState {
@@ -8,6 +9,7 @@ export interface OffersState {
   hoveredOfferId: string | null;
   isOffersLoading: boolean;
   authorizationStatus: AuthorizationStatus;
+  currentUser: User | null;
   currentOffer: TOffer | null;
   isCurrentOfferLoading: boolean;
   currentNearbyOffers: TNearbyOffer[];
@@ -16,6 +18,7 @@ export interface OffersState {
   isCommentsLoading: boolean;
 }
 
+
 export const initialState: OffersState = {
   city: CITIES[0].name,
   offers: [],
@@ -23,6 +26,7 @@ export const initialState: OffersState = {
   hoveredOfferId: null,
   isOffersLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  currentUser: null,
   currentOffer: null,
   isCurrentOfferLoading: false,
   currentNearbyOffers: [],
@@ -30,3 +34,4 @@ export const initialState: OffersState = {
   currentComments: [],
   isCommentsLoading: false,
 };
+

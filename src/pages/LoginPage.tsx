@@ -3,15 +3,13 @@ import { useSelector } from 'react-redux';
 import { LoginForm } from '../components/login-page/LoginForm';
 import { LoginLocations } from '../components/login-page/LoginLocations';
 import { PageLayout } from '../components/page-layout/PageLayout';
-import { AppRoute, AuthorizationStatus } from '../const';
+import { AppRoute } from '../const';
 import { RootState } from '../store/store';
 
 export function LoginPage(): JSX.Element {
-  const authorizationStatus = useSelector(
-    (state: RootState) => state.authorizationStatus
-  );
+  const currentUser = useSelector((state: RootState) => state.currentUser);
 
-  if (authorizationStatus === AuthorizationStatus.Auth) {
+  if (currentUser) {
     return <Navigate to={AppRoute.Main} />;
   }
 

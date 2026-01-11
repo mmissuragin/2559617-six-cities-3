@@ -1,8 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { ThunkApiConfig, AuthData } from './types';
-import { setAuthorizationStatus } from '../action';
+import { setAuthorizationStatus, setCurrentUser } from '../action';
 import { AuthorizationStatus } from '../../const';
+import { saveToken } from '../../services/token';
+import { User } from '../../types/user';
+
+type AuthResponse = User & {
+  token: string;
+};
 
 export const checkAuth = createAsyncThunk<
   void,
@@ -12,10 +18,16 @@ export const checkAuth = createAsyncThunk<
   'user/checkAuth',
   async (_arg, { extra: api, dispatch }) => {
     try {
-      await api.get('/login');
+      const { data } = await api.get<AuthResponse>('/login');
+
+      saveToken(data.token);
+
+      const { token, ...user } = data;
+      dispatch(setCurrentUser(user));
       dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
     } catch (error) {
       if (error instanceof AxiosError && error.response?.status === 401) {
+        dispatch(setCurrentUser(null));
         dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
       }
     }
@@ -29,7 +41,12 @@ export const login = createAsyncThunk<
 >(
   'user/login',
   async ({ email, password }, { extra: api, dispatch }) => {
-    await api.post('/login', { email, password });
+    const { data } = await api.post<AuthResponse>('/login', { email, password });
+
+    saveToken(data.token);
+
+    const { token, ...user } = data;
+    dispatch(setCurrentUser(user));
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
   }
 );
