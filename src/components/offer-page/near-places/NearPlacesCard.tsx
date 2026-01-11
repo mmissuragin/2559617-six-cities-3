@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
 import { toggleFavorite } from '../../../store/api-actions/favorites';
+import { useState } from 'react';
 
 type Props = {
   id: string;
@@ -23,16 +24,23 @@ export function NearPlacesCard({
   type,
 }: Props): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
-
+  const navigate = useNavigate();
   const offer = useSelector((state: RootState) =>
     state.offers.find((o) => o.id === id)
   );
+  const currentUser = useSelector((state: RootState) => state.currentUser);
 
-  const isFavorite = offer?.isFavorite ?? false;
+  const [isFavorite, setIsFavorite] = useState(offer?.isFavorite ?? false);
 
   const handleBookmarkClick = () => {
+    if (!currentUser) {
+      navigate('/login');
+      return;
+    }
+
     if (offer) {
-      dispatch(toggleFavorite({ offerId: offer.id, isFavorite }));
+      dispatch(toggleFavorite({ offerId: offer.id, isFavorite, navigate }));
+      setIsFavorite((prev) => !prev);
     }
   };
 

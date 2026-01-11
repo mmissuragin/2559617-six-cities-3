@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
-import { TOffer } from '../../types/offers';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
 import { setHoveredOffer } from '../../store/action';
 import { toggleFavorite } from '../../store/api-actions/favorites';
-import { AppDispatch } from '../../store/store';
+import { useState } from 'react';
+import { TOffer } from '../../types/offers';
 
 type PlaceCardProps = {
   offer: TOffer;
@@ -12,6 +12,8 @@ type PlaceCardProps = {
 
 export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
+  const currentUser = useSelector((state: RootState) => state.currentUser);
+  const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
 
   const handleMouseEnter = () => {
     dispatch(setHoveredOffer(offer.id));
@@ -22,7 +24,13 @@ export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
   };
 
   const handleBookmarkClick = () => {
-    dispatch(toggleFavorite({ offerId: offer.id, isFavorite: offer.isFavorite }));
+    if (!currentUser) {
+      window.location.href = '/login';
+      return;
+    }
+
+    dispatch(toggleFavorite({ offerId: offer.id, isFavorite }));
+    setIsFavorite((prev) => !prev);
   };
 
   return (
@@ -38,7 +46,7 @@ export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
       )}
 
       <div className='cities__image-wrapper place-card__image-wrapper'>
-        <Link to={`${AppRoute.Offer}/${offer.id}`}>
+        <Link to={`/offer/${offer.id}`}>
           <img
             className='place-card__image'
             src={offer.previewImage}
@@ -57,7 +65,7 @@ export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
           </div>
 
           <button
-            className={`place-card__bookmark-button button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''}`}
+            className={`place-card__bookmark-button button ${isFavorite ? 'place-card__bookmark-button--active' : ''}`}
             type='button'
             onClick={handleBookmarkClick}
           >
@@ -65,7 +73,7 @@ export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
               <use href='#icon-bookmark'></use>
             </svg>
             <span className='visually-hidden'>
-              {offer.isFavorite ? 'In bookmarks' : 'To bookmarks'}
+              {isFavorite ? 'In bookmarks' : 'To bookmarks'}
             </span>
           </button>
         </div>
@@ -78,7 +86,7 @@ export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
         </div>
 
         <h2 className='place-card__name'>
-          <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className='place-card__type'>{offer.type}</p>
       </div>
