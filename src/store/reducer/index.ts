@@ -5,6 +5,7 @@ import { offersReducer } from './offers-reducer';
 import { offerDetailsReducer } from './offer-details-reducer';
 import { commentsReducer } from './comments-reducer';
 import { authReducer } from './auth-reducer';
+import { favoritesReducer } from './favorites-reducer';
 
 export const reducer = createReducer(initialState, (builder) => {
   uiReducer(builder);
@@ -12,4 +13,5 @@ export const reducer = createReducer(initialState, (builder) => {
   offerDetailsReducer(builder);
   commentsReducer(builder);
   authReducer(builder);
+  favoritesReducer(builder);
 });

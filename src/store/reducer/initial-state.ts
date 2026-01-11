@@ -18,6 +18,12 @@ export interface OffersState {
   isNearbyOffersLoading: boolean;
   currentComments: TComment[];
   isCommentsLoading: boolean;
+
+  favorites: {
+    offers: TOffer[];
+    loading: boolean;
+    error: string | null;
+  };
 }
 
 
@@ -35,5 +41,9 @@ export const initialState: OffersState = {
   isNearbyOffersLoading: false,
   currentComments: [],
   isCommentsLoading: false,
+  favorites: {
+    offers: [],
+    loading: false,
+    error: null,
+  },
 };
-

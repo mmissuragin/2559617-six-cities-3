@@ -1,13 +1,23 @@
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { AppDispatch } from '../../store/store';
+import { toggleFavorite } from '../../store/api-actions/favorites';
 import { TOffer } from '../../types/offers';
+import { AppRoute } from '../../const';
 
-interface Props {
+type Props = {
   offer: TOffer;
-}
+};
 
-export function FavoritesPlaceCard({ offer }: Props): JSX.Element {
+export function FavoritesPlaceCard({ offer }: Props) {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleBookmarkClick = () => {
+    dispatch(toggleFavorite({ offerId: offer.id, isFavorite: offer.isFavorite }));
+  };
+
   return (
     <article className='favorites__card place-card'>
-      {/* Проверка на премиум */}
       {offer.isPremium && (
         <div className='place-card__mark'>
           <span>Premium</span>
@@ -15,7 +25,7 @@ export function FavoritesPlaceCard({ offer }: Props): JSX.Element {
       )}
 
       <div className='favorites__image-wrapper place-card__image-wrapper'>
-        <a href='#'>
+        <Link to={`${AppRoute.Offer}/${offer.id}`}>
           <img
             className='place-card__image'
             src={offer.previewImage}
@@ -23,7 +33,7 @@ export function FavoritesPlaceCard({ offer }: Props): JSX.Element {
             height={110}
             alt='Place image'
           />
-        </a>
+        </Link>
       </div>
 
       <div className='favorites__card-info place-card__info'>
@@ -34,13 +44,16 @@ export function FavoritesPlaceCard({ offer }: Props): JSX.Element {
           </div>
 
           <button
-            className='place-card__bookmark-button place-card__bookmark-button--active button'
+            className={`place-card__bookmark-button button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''}`}
             type='button'
+            onClick={handleBookmarkClick}
           >
             <svg className='place-card__bookmark-icon' width={18} height={19}>
               <use href='#icon-bookmark'></use>
             </svg>
-            <span className='visually-hidden'>In bookmarks</span>
+            <span className='visually-hidden'>
+              {offer.isFavorite ? 'In bookmarks' : 'To bookmarks'}
+            </span>
           </button>
         </div>
 
@@ -52,7 +65,7 @@ export function FavoritesPlaceCard({ offer }: Props): JSX.Element {
         </div>
 
         <h2 className='place-card__name'>
-          <a href='#'>{offer.title}</a>
+          <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className='place-card__type'>{offer.type}</p>
       </div>
