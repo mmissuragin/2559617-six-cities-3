@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkApiConfig } from './types';
-import { TComment } from '../../types/offers';
+import { TComment } from '../../types/comments';
 
 export const fetchCommentsByOfferId = createAsyncThunk<
   TComment[],

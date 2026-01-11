@@ -1,4 +1,6 @@
-import { TOffer, TNearbyOffer, TComment } from '../../types/offers';
+import { TOffer} from '../../types/offers';
+import { TNearbyOffer } from '../../types/nearby-offers';
+import { TComment } from '../../types/comments';
 import { User } from '../../types/user';
 import { CITIES, AuthorizationStatus } from '../../const';
 

@@ -9,10 +9,14 @@ export function HeaderNavigation(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const handleLogout = async (evt: React.MouseEvent<HTMLAnchorElement>) => {
-    evt.preventDefault();
+  const handleLogout = async (): Promise<void> => {
     await dispatch(logout());
     navigate(AppRoute.Login);
+  };
+
+  const handleLogoutClick = (evt: React.MouseEvent<HTMLAnchorElement>): void => {
+    evt.preventDefault();
+    void handleLogout();
   };
 
   if (!currentUser) {
@@ -24,7 +28,9 @@ export function HeaderNavigation(): JSX.Element {
               className='header__nav-link header__nav-link--profile'
               to={AppRoute.Login}
             >
-              <span className='header__signout'>Sign in</span>
+              <span className='header__signout'>
+                Sign in
+              </span>
             </Link>
           </li>
         </ul>
@@ -36,24 +42,32 @@ export function HeaderNavigation(): JSX.Element {
     <nav className='header__nav'>
       <ul className='header__nav-list'>
         <li className='header__nav-item user'>
-          <a className='header__nav-link header__nav-link--profile' href="#">
+          <a
+            className='header__nav-link header__nav-link--profile'
+            href="/favorites"
+          >
             <div
               className='header__avatar-wrapper user__avatar-wrapper'
               style={{ backgroundImage: `url(${currentUser.avatarUrl})` }}
-            ></div>
+            >
+            </div>
             <span className='header__user-name user__name'>
               {currentUser.name}
             </span>
-            <span className='header__favorite-count'>0</span>
+            <span className='header__favorite-count'>
+              0
+            </span>
           </a>
         </li>
         <li className='header__nav-item'>
           <a
             className='header__nav-link'
             href="#"
-            onClick={handleLogout}
+            onClick={handleLogoutClick}
           >
-            <span className='header__signout'>Sign out</span>
+            <span className='header__signout'>
+              Sign out
+            </span>
           </a>
         </li>
       </ul>

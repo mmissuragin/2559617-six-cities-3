@@ -6,15 +6,9 @@ import { AuthorizationStatus } from '../../const';
 import { saveToken, dropToken } from '../../services/token';
 import { User } from '../../types/user';
 
-type AuthResponse = User & {
-  token: string;
-};
+type AuthResponse = User & { token: string };
 
-export const checkAuth = createAsyncThunk<
-  void,
-  void,
-  ThunkApiConfig
->(
+export const checkAuth = createAsyncThunk<void, void, ThunkApiConfig>(
   'user/checkAuth',
   async (_arg, { extra: api, dispatch }) => {
     try {
@@ -22,8 +16,8 @@ export const checkAuth = createAsyncThunk<
 
       saveToken(data.token);
 
-      const { token, ...user } = data;
-      dispatch(setCurrentUser(user));
+      const { name, email, avatarUrl, isPro } = data;
+      dispatch(setCurrentUser({ name, email, avatarUrl, isPro }));
       dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
     } catch (error) {
       if (error instanceof AxiosError && error.response?.status === 401) {
@@ -34,27 +28,24 @@ export const checkAuth = createAsyncThunk<
   }
 );
 
-export const login = createAsyncThunk<
-  void,
-  AuthData,
-  ThunkApiConfig
->(
+export const login = createAsyncThunk<void, AuthData, ThunkApiConfig>(
   'user/login',
   async ({ email, password }, { extra: api, dispatch }) => {
     const { data } = await api.post<AuthResponse>('/login', { email, password });
 
     saveToken(data.token);
 
-    const { token, ...user } = data;
-    dispatch(setCurrentUser(user));
+    const { name, email: userEmail, avatarUrl, isPro } = data;
+    dispatch(setCurrentUser({ name, email: userEmail, avatarUrl, isPro }));
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
   }
 );
 
 export const logout = createAsyncThunk<void, void>(
   'user/logout',
-  async (_arg, { dispatch }) => {
+  (_arg, { dispatch }) => {
     dropToken();
     dispatch(setCurrentUser(null));
+    dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
   }
 );
