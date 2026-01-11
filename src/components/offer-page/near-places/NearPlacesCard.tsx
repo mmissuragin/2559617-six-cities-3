@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../store/store';
+import { toggleFavorite } from '../../../store/api-actions/favorites';
 
 type Props = {
   id: string;
@@ -10,7 +13,29 @@ type Props = {
   type: string;
 };
 
-export function NearPlacesCard({ id, isPremium, imageSrc, pricePerNight, rating, title, type }: Props): JSX.Element {
+export function NearPlacesCard({
+  id,
+  isPremium,
+  imageSrc,
+  pricePerNight,
+  rating,
+  title,
+  type,
+}: Props): JSX.Element {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const offer = useSelector((state: RootState) =>
+    state.offers.find((o) => o.id === id)
+  );
+
+  const isFavorite = offer?.isFavorite ?? false;
+
+  const handleBookmarkClick = () => {
+    if (offer) {
+      dispatch(toggleFavorite({ offerId: offer.id, isFavorite }));
+    }
+  };
+
   return (
     <article className='near-places__card place-card'>
       {isPremium && (
@@ -18,30 +43,41 @@ export function NearPlacesCard({ id, isPremium, imageSrc, pricePerNight, rating,
           <span>Premium</span>
         </div>
       )}
+
       <div className='near-places__image-wrapper place-card__image-wrapper'>
         <Link to={`/offer/${id}`}>
           <img className='place-card__image' src={imageSrc} width='260' height='200' alt='Place image' />
         </Link>
       </div>
+
       <div className='place-card__info'>
         <div className='place-card__price-wrapper'>
           <div className='place-card__price'>
             <b className='place-card__price-value'>&euro;{pricePerNight}</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <button className='place-card__bookmark-button button' type='button'>
+
+          <button
+            className={`place-card__bookmark-button button ${isFavorite ? 'place-card__bookmark-button--active' : ''}`}
+            type='button'
+            onClick={handleBookmarkClick}
+          >
             <svg className='place-card__bookmark-icon' width='18' height='19'>
               <use href='#icon-bookmark'></use>
             </svg>
-            <span className='visually-hidden'>In bookmarks</span>
+            <span className='visually-hidden'>
+              {isFavorite ? 'In bookmarks' : 'To bookmarks'}
+            </span>
           </button>
         </div>
+
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
             <span style={{ width: `${rating}%` }}></span>
             <span className='visually-hidden'>Rating</span>
           </div>
         </div>
+
         <h2 className='place-card__name'>
           <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
