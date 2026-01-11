@@ -6,7 +6,7 @@ import { fetchOfferById, fetchCommentsByOfferId, fetchNearbyOffers } from '../st
 import { PageLayout } from '../components/page-layout/PageLayout';
 import { OfferGallery } from '../components/offer-page/offer-gallery/OfferGallery';
 import { OfferInfo } from '../components/offer-page/offer-info/OfferInfo';
-import { MapSection } from '../components/main-page/MapSection';
+import { OfferMap } from '../components/offer-page/OfferMap';
 import { NearPlaces } from '../components/offer-page/near-places/NearPlaces';
 import { NotFoundPage } from './NotFoundPage';
 
@@ -14,7 +14,7 @@ export function OfferPage(): JSX.Element {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { currentOffer, isCurrentOfferLoading } = useSelector(
+  const { currentOffer, currentNearbyOffers, isCurrentOfferLoading } = useSelector(
     (state: RootState) => state
   );
 
@@ -39,7 +39,10 @@ export function OfferPage(): JSX.Element {
       <section className="offer">
         <OfferGallery />
         <OfferInfo offer={currentOffer} />
-        <MapSection offers={[currentOffer]} />
+        <OfferMap
+          currentOffer={currentOffer}
+          nearbyOffers={currentNearbyOffers}
+        />
         <NearPlaces />
       </section>
     </PageLayout>
