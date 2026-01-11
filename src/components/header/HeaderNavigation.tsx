@@ -1,10 +1,19 @@
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { AppRoute } from '../../const';
-import { RootState } from '../../store/store';
+import { RootState, AppDispatch } from '../../store/store';
+import { logout } from '../../store/api-actions';
 
 export function HeaderNavigation(): JSX.Element {
   const currentUser = useSelector((state: RootState) => state.currentUser);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+
+  const handleLogout = async (evt: React.MouseEvent<HTMLAnchorElement>) => {
+    evt.preventDefault();
+    await dispatch(logout());
+    navigate(AppRoute.Login);
+  };
 
   if (!currentUser) {
     return (
@@ -39,7 +48,11 @@ export function HeaderNavigation(): JSX.Element {
           </a>
         </li>
         <li className='header__nav-item'>
-          <a className='header__nav-link' href="#">
+          <a
+            className='header__nav-link'
+            href="#"
+            onClick={handleLogout}
+          >
             <span className='header__signout'>Sign out</span>
           </a>
         </li>

@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { ThunkApiConfig, AuthData } from './types';
 import { setAuthorizationStatus, setCurrentUser } from '../action';
 import { AuthorizationStatus } from '../../const';
-import { saveToken } from '../../services/token';
+import { saveToken, dropToken } from '../../services/token';
 import { User } from '../../types/user';
 
 type AuthResponse = User & {
@@ -48,5 +48,13 @@ export const login = createAsyncThunk<
     const { token, ...user } = data;
     dispatch(setCurrentUser(user));
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+  }
+);
+
+export const logout = createAsyncThunk<void, void>(
+  'user/logout',
+  async (_arg, { dispatch }) => {
+    dropToken();
+    dispatch(setCurrentUser(null));
   }
 );
