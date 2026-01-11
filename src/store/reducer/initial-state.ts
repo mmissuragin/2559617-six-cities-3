@@ -1,0 +1,32 @@
+import { TOffer, TNearbyOffer, TComment } from '../../types/offers';
+import { CITIES, AuthorizationStatus } from '../../const';
+
+export interface OffersState {
+  city: string;
+  offers: TOffer[];
+  sortType: string;
+  hoveredOfferId: string | null;
+  isOffersLoading: boolean;
+  authorizationStatus: AuthorizationStatus;
+  currentOffer: TOffer | null;
+  isCurrentOfferLoading: boolean;
+  currentNearbyOffers: TNearbyOffer[];
+  isNearbyOffersLoading: boolean;
+  currentComments: TComment[];
+  isCommentsLoading: boolean;
+}
+
+export const initialState: OffersState = {
+  city: CITIES[0].name,
+  offers: [],
+  sortType: 'popular',
+  hoveredOfferId: null,
+  isOffersLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  currentOffer: null,
+  isCurrentOfferLoading: false,
+  currentNearbyOffers: [],
+  isNearbyOffersLoading: false,
+  currentComments: [],
+  isCommentsLoading: false,
+};
