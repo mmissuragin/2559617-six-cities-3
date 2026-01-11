@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { FavoritesPageEmpty } from '../../components/favorites/favorites-empty';
-import { FavoritesSection } from '../../components/favorites/favorites-section';
-import { PageLayout } from '../../components/page-layout/PageLayout';
+import { RootState } from '../store/store';
+import { FavoritesPageEmpty } from '../components/favorites/FavoritesPageEmpty';
+import { FavoritesSection } from '../components/favorites/FavoritesSection';
+import { PageLayout } from '../components/page-layout/PageLayout';
 
 export function FavoritesPage(): JSX.Element {
   const offers = useSelector((state: RootState) => state.offers);

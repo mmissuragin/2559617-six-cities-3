@@ -1,4 +1,4 @@
-import { FavoritesPlaceCard } from './favorites-place-card';
+import { FavoritesPlaceCard } from './FavoritesPlaceCard';
 import { TOffer } from '../../types/offers';
 
 interface Props {

@@ -1,6 +1,6 @@
 import { TOffer } from '../../../../types/offers';
-import { OfferHostDescription } from './offer-host-description';
-import { OfferHostUser } from './offer-host-user';
+import { OfferHostDescription } from './OfferHostDescription';
+import { OfferHostUser } from './OfferHostUser';
 
 interface Props {
   host: TOffer['host'];

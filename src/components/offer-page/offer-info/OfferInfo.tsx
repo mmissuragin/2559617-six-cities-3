@@ -1,12 +1,12 @@
-import { OfferFeatures } from './offer-features';
-import { OfferInsideList } from './offer-inside/offer-inside-list';
-import { OfferName } from './offer-name';
-import { OfferPremiumMark } from './offer-premium-mark';
-import { OfferPrice } from './offer-price';
-import { OfferRating } from './offer-rating';
+import { OfferFeatures } from './OfferFeatures';
+import { OfferInsideList } from './offer-inside/OfferInsideList';
+import { OfferName } from './OfferName';
+import { OfferPremiumMark } from './OfferPremiumMark';
+import { OfferPrice } from './OfferPrice';
+import { OfferRating } from './OfferRating';
 import { TOffer } from '../../../types/offers';
-import { OfferHost } from './offer-host/offer-host-section';
-import { OfferReviews } from './offer-reviews/offer-reviews-section';
+import { OfferHost } from './offer-host/OfferHost';
+import { OfferReviews } from './offer-reviews/OfferReviews';
 
 interface Props {
   offer: TOffer;

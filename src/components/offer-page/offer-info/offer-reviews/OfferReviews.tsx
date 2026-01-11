@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 
-import { OfferReviewForm } from './offer-review-form/offer-review-form';
-import { OfferReviewsList } from './offer-reviews-list/offer-reviews-list';
+import { OfferReviewForm } from './offer-review-form/OfferReviewForm';
+import { OfferReviewsList } from './offer-reviews-list/OfferReviewsList';
 
 export function OfferReviews() {
   const { currentComments, isCommentsLoading } = useSelector(

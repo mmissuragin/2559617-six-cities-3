@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { CitiesTabsItem } from './cities-tabs-item';
+import { CitiesTabsItem } from './CitiesTabsItem';
 import { CITIES } from '../../const';
 import { RootState, AppDispatch } from '../../store/store';
 import { changeCity } from '../../store/action';

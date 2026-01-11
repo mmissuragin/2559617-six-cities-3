@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { OfferGalleryItem } from './offer-gallery-item';
+import { OfferGalleryItem } from './OfferGalleryItem';
 
 export function OfferGallery(): JSX.Element | null {
   const currentOffer = useSelector(

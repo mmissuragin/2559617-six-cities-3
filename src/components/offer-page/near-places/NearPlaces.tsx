@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../../store/store';
 import { fetchNearbyOffers } from '../../../store/api-actions';
-import { NearPlacesCard } from './near-place-card';
+import { NearPlacesCard } from './NearPlacesCard';
 import { useParams } from 'react-router-dom';
 
 export function NearPlaces() {

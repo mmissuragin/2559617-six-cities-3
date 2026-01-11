@@ -1,5 +1,5 @@
 import { OfferList} from './OfferList';
-import { MapSection } from './map-section';
+import { MapSection } from './MapSection';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
