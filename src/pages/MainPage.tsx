@@ -6,12 +6,13 @@ import { CitiesTabsList } from '../components/cities-tabs/CitiesTabsList';
 import { CitiesContainer } from '../components/main-page/CitiesContainer';
 import { PageLayout } from '../components/page-layout/PageLayout';
 import { Spinner } from '../components/Spinner/Spinner';
+import { MainPageEmpty } from '../components/main-page/MainPageEmpty';
 
 export function MainPage(): JSX.Element {
   const dispatch: AppDispatch = useDispatch();
-  const isOffersLoading = useSelector(
-    (state: RootState) => state.isOffersLoading
-  );
+  const isOffersLoading = useSelector((state: RootState) => state.isOffersLoading);
+  const offers = useSelector((state: RootState) => state.offers);
+  const city = useSelector((state: RootState) => state.city);
 
   useEffect(() => {
     dispatch(fetchOffers());
@@ -21,6 +22,8 @@ export function MainPage(): JSX.Element {
     return <Spinner />;
   }
 
+  const filteredOffers = offers.filter((offer) => offer.city.name === city);
+
   return (
     <PageLayout
       pageClassName="page page--gray page--main"
@@ -28,7 +31,7 @@ export function MainPage(): JSX.Element {
       showHeaderNavigation
     >
       <CitiesTabsList />
-      <CitiesContainer />
+      {filteredOffers.length === 0 ? <MainPageEmpty /> : <CitiesContainer />}
     </PageLayout>
   );
 }
