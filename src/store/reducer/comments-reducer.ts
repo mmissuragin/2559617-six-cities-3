@@ -9,7 +9,9 @@ export const commentsReducer = (builder: ActionReducerMapBuilder<OffersState>) =
       state.currentComments = [];
     })
     .addCase(fetchCommentsByOfferId.fulfilled, (state, action) => {
-      state.currentComments = action.payload;
+      state.currentComments = [...action.payload].sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
       state.isCommentsLoading = false;
     })
     .addCase(fetchCommentsByOfferId.rejected, (state) => {
