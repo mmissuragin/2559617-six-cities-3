@@ -1,5 +1,5 @@
 import { OffersState } from './initial-state';
-import { fetchCommentsByOfferId } from '../api-actions';
+import { fetchCommentsByOfferId, postCommentByOfferId } from '../api-actions';
 import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 
 export const commentsReducer = (builder: ActionReducerMapBuilder<OffersState>) => {
@@ -15,5 +15,15 @@ export const commentsReducer = (builder: ActionReducerMapBuilder<OffersState>) =
     .addCase(fetchCommentsByOfferId.rejected, (state) => {
       state.isCommentsLoading = false;
       state.currentComments = [];
+    })
+
+    .addCase(postCommentByOfferId.pending, (state) => {
+      state.isCommentsLoading = true;
+    })
+    .addCase(postCommentByOfferId.fulfilled, (state) => {
+      state.isCommentsLoading = false;
+    })
+    .addCase(postCommentByOfferId.rejected, (state) => {
+      state.isCommentsLoading = false;
     });
 };
