@@ -1,5 +1,8 @@
 import React from 'react';
 
+const MIN_REVIEW_LENGTH = 50;
+const MAX_REVIEW_LENGTH = 300;
+
 export function OfferReviewForm() {
   const [formData, setFormData] = React.useState({
     rating: '',
@@ -10,16 +13,20 @@ export function OfferReviewForm() {
     evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = evt.target;
+
     setFormData({
       ...formData,
       [name]: value,
     });
   };
 
-  React.useEffect(() => {
-    /* eslint-disable no-console */
-    console.log('Новое значение:', formData);
-  }, [formData]);
+  const isRatingValid = formData.rating !== '';
+  const reviewLength = formData.review.length;
+  const isReviewValid =
+    reviewLength >= MIN_REVIEW_LENGTH &&
+    reviewLength <= MAX_REVIEW_LENGTH;
+
+  const isFormValid = isRatingValid && isReviewValid;
 
   return (
     <form className='reviews__form form' action='#' method='post'>
@@ -131,8 +138,7 @@ export function OfferReviewForm() {
         placeholder='Tell how was your stay, what you like and what can be improved'
         value={formData.review}
         onChange={handleFieldChange}
-      >
-      </textarea>
+      />
 
       <div className='reviews__button-wrapper'>
         <p className='reviews__help'>
@@ -143,7 +149,7 @@ export function OfferReviewForm() {
         <button
           className='reviews__submit form__submit button'
           type='submit'
-          disabled
+          disabled={!isFormValid}
         >
           Submit
         </button>
