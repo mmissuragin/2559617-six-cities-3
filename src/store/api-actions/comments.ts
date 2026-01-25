@@ -24,7 +24,7 @@ export const postCommentByOfferId = createAsyncThunk<
     try {
       await api.post(`/comments/${offerId}`, { rating, comment });
       dispatch(fetchCommentsByOfferId(offerId));
-    } catch (err: any) {
+    } catch (err: unknown) {
       return rejectWithValue('Failed to post comment');
     }
   }

@@ -29,7 +29,9 @@ export function OfferReviewForm(): JSX.Element {
 
   const handleSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault();
-    if (!id || !isFormValid) return;
+    if (!id || !isFormValid) {
+      return;
+    }
 
     setError(null);
 
@@ -43,13 +45,22 @@ export function OfferReviewForm(): JSX.Element {
       ).unwrap();
 
       setFormData({ rating: '', review: '' });
-    } catch (err: any) {
-      setError(err || 'Failed to submit review');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Failed to submit review');
+      }
     }
   };
 
   return (
-    <form className='reviews__form form' onSubmit={handleSubmit}>
+    <form
+      className='reviews__form form'
+      onSubmit={(evt) => {
+        void handleSubmit(evt);
+      }}
+    >
       <label className='reviews__label form__label' htmlFor='review'>
         Your review
       </label>

@@ -14,8 +14,12 @@ export function FavoritesPage(): JSX.Element {
     dispatch(fetchFavorites());
   }, [dispatch]);
 
-  if (loading) return <p>Loading favorites...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) {
+    return <p>Loading favorites...</p>;
+  }
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <PageLayout mainClassName="page__main page__main--favorites" showFooter>

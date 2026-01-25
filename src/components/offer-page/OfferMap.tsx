@@ -26,11 +26,13 @@ export function OfferMap({ currentOffer, nearbyOffers }: Props) {
   const markersRef = useRef<leaflet.Marker[]>([]);
 
   useEffect(() => {
-    if (!map) return;
+    if (!map) {
+      return;
+    }
 
     map.setView([mapCenter.latitude, mapCenter.longitude], mapCenter.zoom);
 
-    markersRef.current.forEach(marker => marker.remove());
+    markersRef.current.forEach((marker) => marker.remove());
     markersRef.current = [];
 
     nearbyOffers.slice(0, 3).forEach((offer) => {

@@ -12,8 +12,11 @@ export const fetchFavorites = createAsyncThunk<TOffer[], undefined, { rejectValu
     try {
       const { data } = await api.get<TOffer[]>('/favorite');
       return data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Failed to update favorite');
     }
   }
 );
@@ -34,7 +37,9 @@ export const toggleFavorite = createAsyncThunk<
     const { currentUser } = getState();
 
     if (!currentUser) {
-      if (navigate) navigate('/login');
+      if (navigate) {
+        navigate('/login');
+      }
       return rejectWithValue('User not authorized');
     }
 
@@ -42,8 +47,11 @@ export const toggleFavorite = createAsyncThunk<
       const status = isFavorite ? 0 : 1;
       const { data } = await api.post<TOffer>(`/favorite/${offerId}/${status}`);
       return data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Failed to update favorite');
     }
   }
 );
