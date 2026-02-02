@@ -9,14 +9,19 @@ export function LoginForm(): JSX.Element {
   const [password, setPassword] = useState('');
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
+    const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d).+$/;
+  evt.preventDefault();
 
-    if (!email.trim() || !password.trim()) {
-      return;
-    }
+  if (!email.trim() || !password.trim()) {
+    return;
+  }
 
-    dispatch(login({ email, password }));
-  };
+  if (!PASSWORD_REGEX.test(password)) {
+    return;
+  }
+
+  dispatch(login({ email, password }));
+};
 
   return (
     <section className="login">
@@ -27,6 +32,7 @@ export function LoginForm(): JSX.Element {
             className="login__input form__input"
             type="email"
             placeholder="Email"
+             name="email"
             required
             value={email}
             onChange={(evt) => setEmail(evt.target.value)}
@@ -37,6 +43,7 @@ export function LoginForm(): JSX.Element {
             className="login__input form__input"
             type="password"
             placeholder="Password"
+            name="password"
             required
             value={password}
             onChange={(evt) => setPassword(evt.target.value)}

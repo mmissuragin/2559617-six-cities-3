@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppRoute } from '../../const';
 import { RootState, AppDispatch } from '../../store/store';
@@ -11,11 +11,9 @@ export function HeaderNavigation(): JSX.Element {
   );
 
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
 
   const handleLogout = async (): Promise<void> => {
     await dispatch(logout());
-    navigate(AppRoute.Login);
   };
 
   const handleLogoutClick = (evt: React.MouseEvent<HTMLAnchorElement>): void => {
@@ -32,7 +30,7 @@ export function HeaderNavigation(): JSX.Element {
               className='header__nav-link header__nav-link--profile'
               to={AppRoute.Login}
             >
-              <span className='header__signout'>Sign in</span>
+              <span className='header__login'>Sign in</span>
             </Link>
           </li>
         </ul>
