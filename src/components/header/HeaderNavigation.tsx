@@ -51,7 +51,7 @@ export function HeaderNavigation(): JSX.Element {
               style={{ backgroundImage: `url(${currentUser.avatarUrl})` }}
             >
             </div>
-            <span className='header__user-name user__name'>{currentUser.name}</span>
+            <span className='header__user-name user__name'>{currentUser.email}</span>
             <span className='header__favorite-count'>{favoritesCount}</span>
           </Link>
         </li>

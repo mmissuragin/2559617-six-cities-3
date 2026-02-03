@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AppDispatch } from '../../../store/store';
+import { AppDispatch, RootState } from '../../../store/store';
 import { toggleFavorite } from '../../../store/api-actions/favorites';
 import { TOffer } from '../../../types/offers';
 
@@ -11,12 +11,19 @@ interface Props {
 
 export function OfferName({ offer }: Props): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate(); // <-- получаем navigate
+  const navigate = useNavigate();
+  const currentUser = useSelector((state: RootState) => state.currentUser);
+
   const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
 
   const handleBookmarkClick = () => {
-    dispatch(toggleFavorite({ offerId: offer.id, isFavorite: offer.isFavorite, navigate }));
-    setIsFavorite((prev) => !prev); // мгновенно меняем стиль кнопки
+    if (!currentUser) {
+      navigate('/login');
+      return;
+    }
+
+    dispatch(toggleFavorite({ offerId: offer.id, isFavorite }));
+    setIsFavorite((prev) => !prev);
   };
 
   return (

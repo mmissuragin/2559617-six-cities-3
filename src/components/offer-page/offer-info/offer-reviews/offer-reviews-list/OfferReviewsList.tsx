@@ -8,7 +8,7 @@ interface Props {
 export function OfferReviewsList({ comments }: Props) {
   return (
     <ul className='reviews__list'>
-      {comments.map((comment) => (
+      {comments.slice(0, 10).map((comment) => (
         <OfferReviewsItem
           key={comment.id}
           userPhoto={comment.user.avatarUrl}
