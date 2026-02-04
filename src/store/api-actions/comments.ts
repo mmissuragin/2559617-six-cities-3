@@ -15,16 +15,20 @@ export const fetchCommentsByOfferId = createAsyncThunk<
 );
 
 export const postCommentByOfferId = createAsyncThunk<
-  void,
+  TComment,
   { offerId: string; rating: number; comment: string },
   ThunkApiConfig
 >(
   'comments/postCommentByOfferId',
-  async ({ offerId, rating, comment }, { extra: api, dispatch, rejectWithValue }) => {
+  async ({ offerId, rating, comment }, { extra: api, rejectWithValue }) => {
     try {
-      await api.post(`/comments/${offerId}`, { rating, comment });
-      dispatch(fetchCommentsByOfferId(offerId));
-    } catch (err: unknown) {
+      const { data } = await api.post<TComment>(
+        `/comments/${offerId}`,
+        { rating, comment }
+      );
+
+      return data;
+    } catch {
       return rejectWithValue('Failed to post comment');
     }
   }
