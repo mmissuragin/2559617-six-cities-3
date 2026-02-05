@@ -11,10 +11,10 @@ export function OfferFeatures({ offer }: Props) {
         {offer.type}
       </li>
       <li className='offer__feature offer__feature--bedrooms'>
-        {offer.bedrooms} Bedroom
+        {offer.bedrooms} {offer.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}
       </li>
       <li className='offer__feature offer__feature--adults'>
-        Max {offer.maxAdults} adult
+        Max {offer.maxAdults} {offer.maxAdults > 1 ? 'adults' : 'adult'}
       </li>
     </ul>
   );
