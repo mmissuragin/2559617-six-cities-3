@@ -1,5 +1,5 @@
-import { PlaceCard } from './place-card';
-import { PlacesSorting } from './places-sorting';
+import { PlaceCard } from './PlaceCard';
+import { PlacesSorting } from './PlacesSorting';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 

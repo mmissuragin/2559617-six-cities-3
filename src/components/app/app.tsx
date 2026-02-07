@@ -6,12 +6,12 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import { AppDispatch } from '../../store/store';
 
-import { MainPage } from '../../pages/main-page/main-page';
-import { LoginPage } from '../../pages/login-page/login-page';
-import { FavoritesPage } from '../../pages/favorites-page/favorites-page';
-import { OfferPage } from '../../pages/offer-page/offer-page';
-import { NotFoundPage } from '../../pages/not-found-page/not-found.page';
-import { PrivateRoute } from '../private-routers/private-route';
+import { MainPage } from '../../pages/MainPage';
+import { LoginPage } from '../../pages/LoginPage';
+import { FavoritesPage } from '../../pages/FavoritesPage';
+import { OfferPage } from '../../pages/OfferPage';
+import { NotFoundPage } from '../../pages/NotFoundPage';
+import { PrivateRoute } from '../private-routers/PrivateRoute';
 
 export default function App(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
