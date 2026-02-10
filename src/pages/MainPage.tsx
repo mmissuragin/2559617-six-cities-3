@@ -5,7 +5,7 @@ import { fetchOffers } from '../store/api-actions';
 import { CitiesTabsList } from '../components/cities-tabs/CitiesTabsList';
 import { CitiesContainer } from '../components/main-page/CitiesContainer';
 import { PageLayout } from '../components/page-layout/PageLayout';
-import { Spinner } from '../components/Spinner/Spinner';
+import { Spinner } from '../components/spinner/Spinner';
 import { MainPageEmpty } from '../components/main-page/MainPageEmpty';
 
 export function MainPage(): JSX.Element {
