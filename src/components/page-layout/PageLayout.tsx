@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { Header } from '../header/header';
-import { Footer } from '../footer/Footer';
+import { Footer } from '../footer/footer';
 
 type PageLayoutProps = {
   pageClassName?: string;
