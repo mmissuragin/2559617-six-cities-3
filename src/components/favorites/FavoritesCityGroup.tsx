@@ -8,7 +8,7 @@ interface Props {
 
 export function FavoritesCityGroup({ cityName, offers }: Props): JSX.Element {
   return (
-    <li className='favorites__locations-items'>
+    <li data-testid="favorites-city-group" className='favorites__locations-items'>
       <div className='favorites__locations locations locations--current'>
         <div className='locations__item'>
           <a className='locations__item-link' href='#'>
