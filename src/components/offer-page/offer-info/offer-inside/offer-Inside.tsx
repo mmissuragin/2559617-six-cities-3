@@ -4,7 +4,7 @@ interface Props {
   offer: TOffer;
 }
 
-export function OfferInsideList({ offer }: Props) {
+export function OfferInside({ offer }: Props) {
   return (
     <div className='offer__inside'>
       <h2 className='offer__inside-title'>What&apos;s inside</h2>

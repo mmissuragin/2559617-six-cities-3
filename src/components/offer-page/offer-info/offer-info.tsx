@@ -1,12 +1,12 @@
-import { OfferFeatures } from './OfferFeatures';
-import { OfferInsideList } from './offer-inside/OfferInsideList';
-import { OfferName } from './OfferName';
-import { OfferPremiumMark } from './OfferPremiumMark';
-import { OfferPrice } from './OfferPrice';
-import { OfferRating } from './OfferRating';
+import { OfferFeatures } from './offer-features';
+import { OfferInside } from './offer-inside/offer-Inside';
+import { OfferName } from './offer-name';
+import { OfferPremiumMark } from './offer-premium-mark';
+import { OfferPrice } from './offer-price';
+import { OfferRating } from './offer-rating';
 import { TOffer } from '../../../types/offers';
-import { OfferHost } from './offer-host/OfferHost';
-import { OfferReviews } from './offer-reviews/OfferReviews';
+import { OfferHost } from './offer-host/offer-host';
+import { OfferReviews } from './offer-reviews/offer-reviews';
 
 interface Props {
   offer: TOffer;
@@ -22,7 +22,7 @@ export function OfferInfo({ offer }: Props): JSX.Element {
         <OfferRating offer={offer} />
         <OfferFeatures offer={offer} />
         <OfferPrice offer={offer} />
-        <OfferInsideList offer={offer} />
+        <OfferInside offer={offer} />
         <OfferHost host={offer.host} description={offer.description} />
         <OfferReviews />
       </div>

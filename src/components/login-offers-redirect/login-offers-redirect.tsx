@@ -4,7 +4,7 @@ import { changeCity } from '../../store/action';
 import { CITIES, AppRoute } from '../../const';
 import { RootState } from '../../store/store';
 
-export function LoginLocations() {
+export function LoginOffersRedirect() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentCity = useSelector((state: RootState) => state.city);

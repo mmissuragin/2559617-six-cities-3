@@ -1,5 +1,5 @@
-import { HeaderLogo } from './HeaderLogo';
-import { HeaderNavigation } from './HeaderNavigation';
+import { HeaderLogo } from './header-logo';
+import { HeaderNavigation } from './header-navigation';
 
 type Props = {
   showNavigation?: boolean;

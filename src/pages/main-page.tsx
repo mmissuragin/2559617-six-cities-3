@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 import { fetchOffers } from '../store/api-actions';
-import { CitiesTabsList } from '../components/cities-tabs/CitiesTabsList';
-import { CitiesContainer } from '../components/main-page/CitiesContainer';
-import { PageLayout } from '../components/page-layout/PageLayout';
-import { Spinner } from '../components/spinner/Spinner';
-import { MainPageEmpty } from '../components/main-page/MainPageEmpty';
+import { CitiesTabs } from '../components/cities-tabs/cities-tabs';
+import { CitiesContainer } from '../components/main-offer-list/cities-container';
+import { PageLayout } from '../components/page-layout/page-layout';
+import { Spinner } from '../components/spinner/spinner';
+import { MainPageEmpty } from '../components/main-offer-list/main-page-empty';
 
 export function MainPage(): JSX.Element {
   const dispatch: AppDispatch = useDispatch();
@@ -30,7 +30,7 @@ export function MainPage(): JSX.Element {
       mainClassName="page__main page__main--index"
       showHeaderNavigation
     >
-      <CitiesTabsList />
+      <CitiesTabs />
       {filteredOffers.length === 0 ? <MainPageEmpty /> : <CitiesContainer />}
     </PageLayout>
   );

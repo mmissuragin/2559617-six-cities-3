@@ -10,7 +10,7 @@ type PlaceCardProps = {
   offer: TOffer;
 };
 
-export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
+export function MainOfferCard({ offer }: PlaceCardProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const currentUser = useSelector((state: RootState) => state.currentUser);
   const [isFavorite, setIsFavorite] = useState(offer.isFavorite);

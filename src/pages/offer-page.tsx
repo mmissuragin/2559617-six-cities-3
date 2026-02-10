@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 import { fetchOfferById, fetchCommentsByOfferId, fetchNearbyOffers } from '../store/api-actions';
-import { PageLayout } from '../components/page-layout/PageLayout';
-import { OfferGallery } from '../components/offer-page/offer-gallery/OfferGallery';
-import { OfferInfo } from '../components/offer-page/offer-info/OfferInfo';
-import { OfferMap } from '../components/offer-page/OfferMap';
-import { NearPlaces } from '../components/offer-page/near-places/NearPlaces';
-import { NotFoundPage } from './NotFoundPage';
+import { PageLayout } from '../components/page-layout/page-layout';
+import { OfferGallery } from '../components/offer-page/offer-gallery/offer-gallery';
+import { OfferInfo } from '../components/offer-page/offer-info/offer-info';
+import { OfferMap } from '../components/offer-page/offer-map';
+import { NearPlaces } from '../components/offer-page/near-places/near-places';
+import { NotFoundPage } from './not-found-page';
 
 export function OfferPage(): JSX.Element {
   const { id } = useParams<{ id: string }>();
