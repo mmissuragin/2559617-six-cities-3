@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import { AuthorizationStatus } from '../../../../const';
 
-import { OfferReviewForm } from './offer-review-form/OfferReviewForm';
-import { OfferReviewsList } from './offer-reviews-list/OfferReviewsList';
+import { OfferReviewForm } from './offer-review-form/offer-review-form';
+import { OfferReviewsList } from './offer-reviews-list/offer-reviews-list';
 
 export function OfferReviews() {
   const {

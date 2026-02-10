@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { LoginForm } from '../components/login-page/LoginForm';
-import { LoginLocations } from '../components/login-page/LoginLocations';
-import { PageLayout } from '../components/page-layout/PageLayout';
+import { AutorizationForm } from '../components/autorization-form/autorization-form';
+import { LoginOffersRedirect } from '../components/login-offers-redirect/login-offers-redirect';
+import { PageLayout } from '../components/page-layout/page-layout';
 import { AppRoute } from '../const';
 import { RootState } from '../store/store';
 
@@ -20,8 +20,8 @@ export function LoginPage(): JSX.Element {
       showHeaderNavigation={false}
     >
       <div className="page__login-container container">
-        <LoginForm />
-        <LoginLocations />
+        <AutorizationForm />
+        <LoginOffersRedirect />
       </div>
     </PageLayout>
   );

@@ -11,7 +11,7 @@ type Props = {
   offers: TOffer[];
 };
 
-export function MapSection({ offers }: Props) {
+export function MainMapSection({ offers }: Props) {
   const mapRef = useRef<HTMLElement | null>(null);
   const hoveredOfferId = useSelector((state: RootState) => state.hoveredOfferId);
   const cityName = useSelector((state: RootState) => state.city);

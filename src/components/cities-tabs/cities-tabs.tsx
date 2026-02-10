@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { CitiesTabsItem } from './CitiesTabsItem';
+import { CitiesTabsItem } from './cities-tabs-item';
 import { CITIES } from '../../const';
 import { RootState, AppDispatch } from '../../store/store';
 import { changeCity } from '../../store/action';
 
-export function CitiesTabsList(): JSX.Element {
+export function CitiesTabs(): JSX.Element {
   const dispatch: AppDispatch = useDispatch();
   const selectedCity = useSelector((state: RootState) => state.city);
 

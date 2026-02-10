@@ -1,5 +1,5 @@
-import { PlaceCard } from './PlaceCard';
-import { PlacesSorting } from './PlacesSorting';
+import { MainOfferCard } from './main-offer-card';
+import { PlacesSorting } from './places-sorting';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
@@ -38,7 +38,7 @@ export function OfferList(): JSX.Element {
 
       <div className='cities__places-list places__list tabs__content'>
         {sortedOffers.map((offer) => (
-          <PlaceCard key={offer.id} offer={offer} />
+          <MainOfferCard key={offer.id} offer={offer} />
         ))}
       </div>
     </section>

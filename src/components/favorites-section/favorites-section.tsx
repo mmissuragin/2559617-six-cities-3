@@ -1,4 +1,4 @@
-import { FavoritesCityGroup } from './FavoritesCityGroup';
+import { FavoritesCityGroup } from './favorites-city-group';
 import { TOffer } from '../../types/offers';
 
 type Props = {

@@ -1,5 +1,5 @@
-import { OfferList } from './OfferList';
-import { MapSection } from './MapSection';
+import { OfferList } from './main-offer-list';
+import { MainMapSection } from './main-map-section';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
@@ -36,7 +36,7 @@ export function CitiesContainer(): JSX.Element {
           <>
             <OfferList />
             <div className="cities__right-section">
-              <MapSection offers={filteredOffers} />
+              <MainMapSection offers={filteredOffers} />
             </div>
           </>
         )}

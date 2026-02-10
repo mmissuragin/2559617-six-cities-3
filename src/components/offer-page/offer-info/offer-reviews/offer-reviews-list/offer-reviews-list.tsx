@@ -1,5 +1,5 @@
 import { TComment } from '../../../../../types/comments';
-import { OfferReviewsItem } from './OfferReviewsItem';
+import { OfferReviewsItem } from './offer-reviews-item';
 
 interface Props {
   comments: TComment[];

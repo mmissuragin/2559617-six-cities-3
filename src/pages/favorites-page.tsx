@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 import { fetchFavorites } from '../store/api-actions/favorites';
-import { FavoritesPageEmpty } from '../components/favorites/FavoritesPageEmpty';
-import { FavoritesSection } from '../components/favorites/FavoritesSection';
-import { PageLayout } from '../components/page-layout/PageLayout';
+import { FavoritesPageEmpty } from '../components/favorites-section/favorites-page-empty';
+import { FavoritesSection } from '../components/favorites-section/favorites-section';
+import { PageLayout } from '../components/page-layout/page-layout';
 
 export function FavoritesPage(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
