@@ -26,7 +26,7 @@ export const postCommentByOfferId = createAsyncThunk<
         `/comments/${offerId}`,
         { rating, comment }
       );
-      dispatch(fetchCommentsByOfferId(offerId))
+      dispatch(fetchCommentsByOfferId(offerId));
 
       return data;
     } catch {

@@ -14,8 +14,16 @@ export function OfferPage(): JSX.Element {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { currentOffer, currentNearbyOffers, isCurrentOfferLoading } = useSelector(
-    ({ currentOffer, currentNearbyOffers, isCurrentOfferLoading }: RootState) => ({ currentOffer, currentNearbyOffers, isCurrentOfferLoading })
+  const currentOffer = useSelector(
+    (state: RootState) => state.currentOffer
+  );
+
+  const currentNearbyOffers = useSelector(
+    (state: RootState) => state.currentNearbyOffers
+  );
+
+  const isCurrentOfferLoading = useSelector(
+    (state: RootState) => state.isCurrentOfferLoading
   );
 
   useEffect(() => {
@@ -48,3 +56,4 @@ export function OfferPage(): JSX.Element {
     </PageLayout>
   );
 }
+

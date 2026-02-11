@@ -9,7 +9,7 @@ export function NearPlaces() {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
 
-  const  currentNearbyOffers = useSelector(
+  const currentNearbyOffers = useSelector(
     (state: RootState) => state.currentNearbyOffers
   );
 
