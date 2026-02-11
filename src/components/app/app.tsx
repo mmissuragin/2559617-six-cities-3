@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { checkAuth } from '../../store/api-actions';
+import { checkAuth, fetchFavorites } from '../../store/api-actions';
 
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const';
@@ -18,6 +18,7 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     dispatch(checkAuth());
+    dispatch(fetchFavorites());
   }, [dispatch]);
 
   return (
