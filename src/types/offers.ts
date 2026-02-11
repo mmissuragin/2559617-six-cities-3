@@ -1,6 +1,6 @@
 import { TCity, TLocationCoordinates } from './common';
 
-export type TApartmentType = 'apartment' | 'room';
+export type TApartmentType = 'apartment' | 'room' | 'house';
 
 export type TOffer = {
   id: string;

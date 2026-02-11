@@ -1,8 +1,7 @@
 import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 import { OffersState } from './initial-state';
 import {
-  fetchCommentsByOfferId,
-  postCommentByOfferId,
+  fetchCommentsByOfferId
 } from '../api-actions';
 
 export const commentsReducer = (
@@ -14,17 +13,14 @@ export const commentsReducer = (
     })
 
     .addCase(fetchCommentsByOfferId.fulfilled, (state, action) => {
-      state.currentComments = [...action.payload].sort(
-        (a, b) => Date.parse(b.date) - Date.parse(a.date)
-      );
+      state.currentComments = 
+      [...action.payload]
+      .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+      .slice(0, 10);
       state.isCommentsLoading = false;
     })
 
     .addCase(fetchCommentsByOfferId.rejected, (state) => {
       state.isCommentsLoading = false;
     })
-
-    .addCase(postCommentByOfferId.fulfilled, (state, action) => {
-      state.currentComments.unshift(action.payload);
-    });
 };

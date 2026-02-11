@@ -20,12 +20,13 @@ export const postCommentByOfferId = createAsyncThunk<
   ThunkApiConfig
 >(
   'comments/postCommentByOfferId',
-  async ({ offerId, rating, comment }, { extra: api, rejectWithValue }) => {
+  async ({ offerId, rating, comment }, { extra: api, rejectWithValue, dispatch }) => {
     try {
       const { data } = await api.post<TComment>(
         `/comments/${offerId}`,
         { rating, comment }
       );
+      dispatch(fetchCommentsByOfferId(offerId))
 
       return data;
     } catch {

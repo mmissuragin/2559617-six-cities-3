@@ -6,13 +6,10 @@ interface Props {
 }
 
 export function OfferReviewsList({ comments }: Props) {
-  const sortedComments = [...comments]
-    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
-    .slice(0, 10);
 
   return (
     <ul className='reviews__list'>
-      {sortedComments.map((comment) => (
+      {comments.map((comment) => (
         <OfferReviewsItem
           key={comment.id}
           userPhoto={comment.user.avatarUrl}

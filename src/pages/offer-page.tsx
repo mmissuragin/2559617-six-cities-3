@@ -15,7 +15,7 @@ export function OfferPage(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
 
   const { currentOffer, currentNearbyOffers, isCurrentOfferLoading } = useSelector(
-    (state: RootState) => state
+    ({ currentOffer, currentNearbyOffers, isCurrentOfferLoading }: RootState) => ({ currentOffer, currentNearbyOffers, isCurrentOfferLoading })
   );
 
   useEffect(() => {

@@ -10,7 +10,7 @@ export function OfferReviews() {
     currentComments,
     isCommentsLoading,
     authorizationStatus,
-  } = useSelector((state: RootState) => state);
+  } = useSelector(({ currentComments, isCommentsLoading, authorizationStatus}: RootState) => ({ currentComments, isCommentsLoading, authorizationStatus}));
 
   if (isCommentsLoading) {
     return <p>Loading reviews...</p>;
