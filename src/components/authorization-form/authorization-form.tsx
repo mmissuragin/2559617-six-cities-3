@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../store/api-actions';
 import { AppDispatch } from '../../store/store';
 
-export function AutorizationForm(): JSX.Element {
+export function AuthorizationForm(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

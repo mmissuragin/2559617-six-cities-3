@@ -1,5 +1,5 @@
 import { OfferFeatures } from './offer-features';
-import { OfferInside } from './offer-inside/offer-Inside';
+import { OfferInside } from './offer-inside/offer-inside';
 import { OfferName } from './offer-name';
 import { OfferPremiumMark } from './offer-premium-mark';
 import { OfferPrice } from './offer-price';
