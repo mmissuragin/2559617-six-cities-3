@@ -5,10 +5,12 @@ interface Props {
 }
 
 export function OfferFeatures({ offer }: Props) {
+  const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
   return (
     <ul className='offer__features'>
       <li className='offer__feature offer__feature--entire'>
-        {offer.type}
+        {capitalize(offer.type)}
       </li>
       <li className='offer__feature offer__feature--bedrooms'>
         {offer.bedrooms} {offer.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}

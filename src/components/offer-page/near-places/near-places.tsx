@@ -35,7 +35,7 @@ export function NearPlaces() {
               pricePerNight={offer.price}
               rating={(offer.rating / 5) * 100}
               title={offer.title}
-              type={offer.type.charAt(0).toUpperCase() + offer.type.slice(1)}
+              type={offer.type}
             />
           ))}
         </div>
