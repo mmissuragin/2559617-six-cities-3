@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../../store/store';
@@ -13,8 +12,7 @@ export function OfferName({ offer }: Props): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const currentUser = useSelector((state: RootState) => state.currentUser);
-
-  const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
+  const isFavorite = offer.isFavorite
 
   const handleBookmarkClick = () => {
     if (!currentUser) {
@@ -23,7 +21,6 @@ export function OfferName({ offer }: Props): JSX.Element {
     }
 
     dispatch(toggleFavorite({ offerId: offer.id, isFavorite }));
-    setIsFavorite((prev) => !prev);
   };
 
   return (

@@ -7,3 +7,4 @@ export const changeSort = createAction<string>('sort/changeSort');
 export const setHoveredOffer = createAction<string | null>('hoveredOffer/set');
 export const setAuthorizationStatus = createAction<AuthorizationStatus>('user/setAuthorizationStatus');
 export const setCurrentUser = createAction<User | null>('user/setCurrentUser');
+export const resetFavorites = createAction('favorites/reset');

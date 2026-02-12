@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { ThunkApiConfig, AuthData } from './types';
-import { setAuthorizationStatus, setCurrentUser } from '../action';
+import { setAuthorizationStatus, setCurrentUser, resetFavorites } from '../action';
+import { fetchFavorites } from './favorites';
 import { AuthorizationStatus } from '../../const';
 import { saveToken, dropToken } from '../../services/token';
 import { User } from '../../types/user';
@@ -19,6 +20,7 @@ export const checkAuth = createAsyncThunk<void, void, ThunkApiConfig>(
       const { name, email, avatarUrl, isPro } = data;
       dispatch(setCurrentUser({ name, email, avatarUrl, isPro }));
       dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+      dispatch(fetchFavorites())
     } catch (error) {
       if (error instanceof AxiosError && error.response?.status === 401) {
         dispatch(setCurrentUser(null));
@@ -38,6 +40,7 @@ export const login = createAsyncThunk<void, AuthData, ThunkApiConfig>(
     const { name, email: userEmail, avatarUrl, isPro } = data;
     dispatch(setCurrentUser({ name, email: userEmail, avatarUrl, isPro }));
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+    dispatch(fetchFavorites())
   }
 );
 
@@ -47,5 +50,6 @@ export const logout = createAsyncThunk<void, void>(
     dropToken();
     dispatch(setCurrentUser(null));
     dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
+    dispatch(resetFavorites());
   }
 );
