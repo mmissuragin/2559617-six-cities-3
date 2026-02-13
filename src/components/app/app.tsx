@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { checkAuth, fetchFavorites } from '../../store/api-actions';
+import { checkAuth } from '../../store/api-actions';
 
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const';
