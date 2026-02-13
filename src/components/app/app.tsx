@@ -18,7 +18,6 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     dispatch(checkAuth());
-    dispatch(fetchFavorites());
   }, [dispatch]);
 
   return (

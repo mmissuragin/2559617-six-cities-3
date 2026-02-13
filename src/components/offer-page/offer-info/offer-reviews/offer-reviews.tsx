@@ -30,7 +30,7 @@ export function OfferReviews() {
         Reviews · <span className="reviews__amount">{currentComments.length}</span>
       </h2>
 
-      <OfferReviewsList comments={currentComments} />
+      <OfferReviewsList comments={currentComments.slice(0, 10)} />
 
       {isAuth && <OfferReviewForm />}
     </section>
