@@ -20,7 +20,7 @@ export const checkAuth = createAsyncThunk<void, void, ThunkApiConfig>(
       const { name, email, avatarUrl, isPro } = data;
       dispatch(setCurrentUser({ name, email, avatarUrl, isPro }));
       dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
-      dispatch(fetchFavorites())
+      dispatch(fetchFavorites());
     } catch (error) {
       if (error instanceof AxiosError && error.response?.status === 401) {
         dispatch(setCurrentUser(null));
@@ -40,7 +40,7 @@ export const login = createAsyncThunk<void, AuthData, ThunkApiConfig>(
     const { name, email: userEmail, avatarUrl, isPro } = data;
     dispatch(setCurrentUser({ name, email: userEmail, avatarUrl, isPro }));
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
-    dispatch(fetchFavorites())
+    dispatch(fetchFavorites());
   }
 );
 

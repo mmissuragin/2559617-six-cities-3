@@ -12,7 +12,7 @@ export function OfferName({ offer }: Props): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const currentUser = useSelector((state: RootState) => state.currentUser);
-  const isFavorite = offer.isFavorite
+  const isFavorite = offer.isFavorite;
 
   const handleBookmarkClick = () => {
     if (!currentUser) {
